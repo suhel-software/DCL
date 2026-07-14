@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+"access_dcl_hr_employee_document_user","dcl.hr.employee.document_user","model_dcl_hr_employee_document","base.group_user",1,0,0,0
+"access_dcl_hr_employee_document_manager","dcl.hr.employee.document_manager","model_dcl_hr_employee_document","dcl_employee_documenst_notification.group_dcl_doc_manager",1,1,1,1
+"access_dcl_hr_document_user","dcl.hr.document_user","model_dcl_hr_document","base.group_user",1,0,0,0
+"access_dcl_hr_document_manager","dcl.hr.document_manager","model_dcl_hr_document","dcl_employee_documenst_notification.group_dcl_doc_manager",1,1,1,1
+"access_dcl_hr_employee_document_type","dcl.hr.employee.document_type","model_dcl_document_type","dcl_employee_documenst_notification.group_dcl_doc_manager",1,1,1,1

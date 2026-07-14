@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.cron" id="dcl_employee_data_reminder">
+        <field name="name">Employee Document Expiration (DCL)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_dcl_hr_employee_document"/>
+        <field name="state">code</field>
+        <field name="code">model.mail_reminder()</field>
+    </record>
+
+    <record model="ir.ui.view" id="dcl_hr_employee_document_inherit_form_view">
+        <field name="name">dcl.hr.employee.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]/button[1]" position="before">
+                <button class="oe_stat_button" name="dcl_document_view" type="object" icon="fa-id-card-o"
+                        groups="dcl_employee_documenst_notification.group_dcl_doc_manager"
+                        style="width: 145px !important;">
+                    <field string="HR Documents" name="dcl_document_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='dcl_employee_document_form_view'>
+        <field name="name">dcl.hr.employee.document.form</field>
+        <field name="model">dcl.hr.employee.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="employee_ref" string="Employee"/>
+                            <field name="document_type"/>
+                            
+                            <field name="document_type_name" invisible="1"/>
+                            <field name="amount" string="Increment Amount" attrs="{'invisible': [('document_type_name', '!=', 'Increment')]}"/>
+                            <field name="amount" string="Promotion Amount" attrs="{'invisible': [('document_type_name', '!=', 'Promotion')]}"/>
+                            <field name="amount" string="Permanent Amount" attrs="{'invisible': [('document_type_name', '!=', 'Permanent')]}"/>
+                            <field name="total_amount" attrs="{'invisible': [('document_type_name', 'not in', ['Increment', 'Promotion', 'Permanent'])]}"/>
+                            <field name="last_increment" attrs="{'invisible': [('document_type_name', 'not in', ['Increment', 'Promotion', 'Permanent'])]}"/>
+                            <field name="last_promotion" attrs="{'invisible': [('document_type_name', 'not in', ['Increment', 'Promotion', 'Permanent'])]}"/>
+                            <field name="doc_attachment_id" widget="many2many_binary" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <field name="expiry_date"/>
+                            <field name="notification_type"/>
+                            <field name="before_days" attrs="{'invisible' : [('notification_type', '=', 'single')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='dcl_employee_documents_tree_view'>
+        <field name="name">dcl.hr.employee.document.tree</field>
+        <field name="model">dcl.hr.employee.document</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="employee_ref" string="Employee"/>
+                <field name="document_type"/>
+                <field name="expiry_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dcl_search_employee_documents" model="ir.ui.view">
+        <field name="name">dcl.hr.employee.document.search</field>
+        <field name="model">dcl.hr.employee.document</field>
+        <field name="arch" type="xml">
+            <search string="Employee Documents">
+                <group expand="0" string="Group By">
+                    <filter name="Employee" string="Employee" domain="[]" context="{'group_by':'employee_ref'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="dcl_hr_employee_document_action" model="ir.actions.act_window">
+        <field name="name">Employee Documents</field>
+        <field name="res_model">dcl.hr.employee.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="dcl_employee_documents_tree_view"/>
+        <field name="context">{'search_default_Employee': 1}</field>
+    </record>
+
+    <menuitem id="dcl_employe_document_menuitem"
+              name="Documents (DCL)"
+              parent="hr.menu_hr_employee_payroll"
+              action="dcl_employee_documenst_notification.dcl_hr_employee_document_action"
+              groups="dcl_employee_documenst_notification.group_dcl_doc_manager" />
+</odoo>

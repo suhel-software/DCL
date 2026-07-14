@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dcl_view_employee_category_form2" model="ir.ui.view">
+         <field name="name">dcl.document.type.form</field>
+         <field name="model">dcl.document.type</field>
+         <field name="arch" type="xml">
+             <form string="Employee Tags">
+                 <sheet>
+                     <group>
+                         <field name="sequence"/>
+                         <field name="name"/>
+                     </group>
+                 </sheet>
+             </form>
+         </field>
+     </record>
+
+    <record model='ir.ui.view' id='dcl_employee_document_tree_view'>
+        <field name="name">dcl.document.type.tree</field>
+        <field name="model">dcl.document.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dcl_hr_employee_document_type_action" model="ir.actions.act_window">
+        <field name="name">Employee Document Types</field>
+        <field name="res_model">dcl.document.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="dcl_document_types_menuitem"
+              name="Document Types (DCL)"
+              parent="hr.menu_human_resources_configuration"
+              sequence="6"
+              action="dcl_employee_documenst_notification.dcl_hr_employee_document_type_action"
+              groups="dcl_employee_documenst_notification.group_dcl_doc_manager"
+              />
+</odoo>

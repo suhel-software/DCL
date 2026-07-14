@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="category_dcl_documents" model="ir.module.category">
+            <field name="name">DCL Documents</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="group_dcl_doc_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="category_dcl_documents"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

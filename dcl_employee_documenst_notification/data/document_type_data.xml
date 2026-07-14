@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dcl_document_type_increment" model="dcl.document.type">
+            <field name="name">Increment</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="dcl_document_type_promotion" model="dcl.document.type">
+            <field name="name">Promotion</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="dcl_document_type_permanent" model="dcl.document.type">
+            <field name="name">Permanent</field>
+            <field name="sequence">3</field>
+        </record>
+    </data>
+</odoo>
