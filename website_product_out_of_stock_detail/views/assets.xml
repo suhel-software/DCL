@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend" inherit_id="web.assets_frontend" name="Out‑of‑Stock CSS">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/website_product_out_of_stock_detail/static/src/css/out_of_stock.scss"/>
+        </xpath>
+    </template>
+</odoo>

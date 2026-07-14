@@ -1,0 +1,47 @@
+/* Premium Out‑of‑Stock banner */
+#out_of_stock_message {
+  background-color: #d9534f !important; /* Solid red matching BS5 danger / shop ribbon */
+  color: #ffffff !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+#out_of_stock_message i.fa {
+  font-size: 1rem;
+  color: #ffffff !important;
+}
+
+/* Premium In-Stock banner */
+#in_stock_message {
+  background-color: #28a745 !important; /* Solid green matching BS5 success */
+  color: #ffffff !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#in_stock_message i.fa {
+  font-size: 1rem;
+  color: #ffffff !important;
+}
+

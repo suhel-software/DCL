@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_sale_stock_product_detail_availability"
+              inherit_id="website_sale.product"
+              name="Out‑of‑Stock Badge on Product Page">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="before">
+            <div id="out_of_stock_message" t-attf-class="#{'d-flex' if product._is_sold_out() else 'd-none'} align-items-center justify-content-center">
+                <i class="fa fa-exclamation-triangle"/>
+                <t t-if="product.out_of_stock_message">
+                    <span id="out_of_stock_text" t-out="product.out_of_stock_message"/>
+                </t>
+                <t t-else="">
+                    <span id="out_of_stock_text">Out of Stock</span>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="after">
+            <div id="in_stock_message" t-attf-class="#{'d-none' if product._is_sold_out() else 'd-flex'} align-items-center justify-content-center">
+                <i class="fa fa-check-circle"/>
+                <span>Available</span>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="attributes">
+            <attribute name="t-attf-class">#{'d-none' if (product._is_sold_out() and not product.allow_out_of_stock_order) else 'd-flex'} flex-wrap align-items-center</attribute>
+        </xpath>
+    </template>
+</odoo>
+
